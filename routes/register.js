@@ -51,7 +51,7 @@ router.post("/register", async (req, res) => {
     // Set the user_id in the session
     req.session.user_id = userId;
 
-    res.redirect(`/menu`);
+    res.redirect(`/login`);
   } catch (error) {
     console.error("Error in register route:", error);
     res.status(500).send("Internal Server Error");

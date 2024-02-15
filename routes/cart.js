@@ -9,8 +9,8 @@ const userQueries = require('../db/queries/users')
 router.get("/", async (req, res) => {
   try {
     const userId = req.session.user_id;
-    const orderID = req.session.order_id;
 
+    const { orderID, menuItemID, quantity, subtotal } = req.body;
     // Fetch user data
     const user = await userQueries.getUserById(userId);
 
@@ -20,10 +20,12 @@ router.get("/", async (req, res) => {
     }
 
     // Assuming userQueries.queryAllFoodItems() returns a promise
-    const menuItems = await userQueries.queryAllFoodItems();
+
+
+    const menuItems = await userQueries.getCart(userId);
 
     // Pass user object to the menu template
-    res.render('cart', { user, menuItems: menuItems.rows });
+    res.render('menu', { user, menuItems: menuItems.rows });
   } catch (error) {
     console.error("Error fetching user and menu items:", error);
     res.status(500).send("Internal Server Error");
