@@ -6,36 +6,55 @@ const userQueries = require('../db/queries/users')
 // const client = require('./twilio-api')
 
 
-//get for viewing
+router.get("/", async (req, res) => {
+  try {
+    const userId = req.session.user_id;
+    const orderID = req.session.order_id;
 
-// router.get('/', (req, res) => {
-//   let templateVars = {};
-//   const userID = req.cookies.customer_id || 1;
+    // Fetch user data
+    const user = await userQueries.getUserById(userId);
 
-//   userQueries.getCart(userID)
-//   .then((data) => {
-//     const orderID = data.rows[0].id;
-//     templateVars.orderID = orderID;
-//     return userQueries.getOrders(orderID)
-//   })
-//   .then((data) => {
-//     templateVars.menuItems = data;
-//     return userQueries.getSubtotal(templateVars.orderID);
-//   })
-//   .then((data) => {
-//     //undefined
-//     if (!data) {
-//       templateVars.subtotal = 0;
+    if (!user) {
+      res.status(404).send("User not found");
+      return;
+    }
 
-//     } else {
-//       templateVars.subtotal = data.reduce((prev, curr) => {
-//         return Number(curr.subtotal) + prev;
-//       }, 0);
-//       templateVars.subtotal = templateVars.subtotal.toFixed(2);
-//       res.render('cart', templateVars)
-//     }
-//   })
-//   .catch((err) => {
-//     res.send(err);
-//   })
-// })
+    // Assuming userQueries.queryAllFoodItems() returns a promise
+    const menuItems = await userQueries.queryAllFoodItems();
+
+    // Pass user object to the menu template
+    res.render('menu', { user, menuItems: menuItems.rows });
+  } catch (error) {
+    console.error("Error fetching user and menu items:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
+
+router.post('/', async (req, res) => {
+  try {
+    // Extract necessary data from the request body
+    const { orderID, menuItemID, quantity } = req.body;
+console.log(orderID, menuItemID, quantity)
+
+    await userQueries.insertOrderedItems(orderID, menuItemID, quantity);
+
+
+    console.log('Item added to the ordered_items database table successfully');
+
+
+    res.status(200).send('Item added to the ordered_items database table successfully');
+  } catch (error) {
+
+    console.error('Error adding item to the ordered_items database table:', error);
+
+
+    res.status(500).send('Error adding item to the ordered_items database table. Please try again later.');
+  }
+});
+
+
+module.exports = router;
+

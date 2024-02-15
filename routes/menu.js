@@ -27,9 +27,33 @@ router.get("/", async (req, res) => {
 });
 
 
-router.post('/:id', async (req, res) => {
-  console.log('req.body:', req.params.id);
-})
+
+
+
+
+router.post('/cart', async (req, res) => {
+  try {
+    // Extract necessary data from the request body
+    const { orderID, menuItemID, quantity } = req.body;
+
+
+    await userQueries.insertOrderedItems(orderID, menuItemID, quantity);
+
+
+    console.log('Item added to the ordered_items database table successfully');
+
+
+    res.status(200).send('Item added to the ordered_items database table successfully');
+  } catch (error) {
+
+    console.error('Error adding item to the ordered_items database table:', error);
+
+
+    res.status(500).send('Error adding item to the ordered_items database table. Please try again later.');
+  }
+});
+
+
 
 
 

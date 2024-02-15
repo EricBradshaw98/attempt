@@ -33,16 +33,17 @@
       <% for (let item of menuItems) { %>
         <article class="menuItem">
           <div id="menuItemDisplay">
-            <img src= "<%= item.photo_url %>"" >
+            <img src= "<%= item.photo_url %>" >
             <div id ="foodInformation">
               <p class="foodNameAndPrice" id="foodNameAndPrice_<%= item.id %>"><%= item.name %> • $<%= (item.price/100).toFixed(2) %></p>
               <p class="foodItemDescription"><%= item.description %></p>
             </div>
           </div>
-          <form class="addToCartForm" action="/cart/<%= item.orderID %>" method="POST">
-            <input type="number" id="quantity_<%= item.id %>" class="quantityInput" name="quantity" step="1" min="1"/>
-            <input type="hidden" name="menuItemId" value="<%= item.id %>"/>
-            <input type="hidden" name="orderID" value="<%= item.orderID %>"/>
+          <form class="addToCartForm" >
+            <input type="number"  class="quantityInput" name="quantity" step="1" min="1"/>
+            <input type="hidden" name="menuItemID" value="<%= item.id %>"/>
+            <input type="hidden" name="userID" value="<%= user.id %>"/>
+
             <button type="submit" data-order-id="<%= item.id%>"class="addToCartButton">ADD TO CART</button>
           </form>
         </article>

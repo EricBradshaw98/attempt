@@ -100,7 +100,7 @@ const createNewOrderQuery = (userID) => {
   `;
   return db.query(queryCreate, [userID])
   .then((data) => {
-    return data.rows;
+    return data.rows[0];
   })
 }
 
@@ -163,4 +163,82 @@ const orderItemContentsQuery = (orderID) => {
   })
 }
 
-module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart, getOrdersAdmin, orderItemContentsQuery};
+//get the ordered items in cart
+const getCart = (userID) => {
+  const queryOrder = `
+    SELECT *
+    FROM orders
+    WHERE user_id = $1 AND order_placed IS NULL`;
+  const queryNewOrder = `
+    INSERT INTO orders (user_id)
+    VALUES ($1)
+    RETURNING *`;
+
+  return db.query(queryOrder, [userID])
+    .then((data) => {
+      if (!data.rows[0]) {
+        return db.query(queryNewOrder, [userID]);
+      }
+
+      return data;
+    });
+  }
+
+  //order history all check
+const getOrders = (orderID) => {
+  const queryString = `
+  SELECT menu.name, menu.price as price, menu.photo_url, menu.description, ordered_items.quantity, ordered_items.id as ordered_itemsID, orders.order_placed
+  FROM menu
+  JOIN ordered_items on (menu.id = ordered_items.menu_item_id)
+  JOIN orders on (ordered_items.order_id = orders.id)
+  WHERE orders.id = $1;
+  `;
+  return db.query(queryString, [orderID])
+  .then((data) => {
+    return data.rows;
+  })
+  .catch((err) => {
+    console.log(err.message);
+  })
+}
+
+//getsubtotal other query
+const getSubtotal = (orderID) => {
+  const queryString = `
+  SELECT SUM(price * ordered_items.quantity) / 100 AS subtotal
+  FROM menu
+  JOIN ordered_items ON menu.id = ordered_items.menu_item_id
+  JOIN orders ON ordered_items.order_id = orders.id
+  WHERE orders.id = $1
+  GROUP BY orders.id;
+  `;
+
+  return db.query(queryString, [orderID])
+    .then((data) => {
+      return data.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+ function insertOrderedItems(orderID, menuItemID, quantity) {
+
+console.log(orderID, menuItemID, quantity)
+
+    const queryText = 'INSERT INTO ordered_items (order_id, menu_item_id, quantity) VALUES ($1, $2, $3)';
+    const values = [orderID, menuItemID, quantity];
+    return db.query(queryText, values)
+    .then((data) => {
+      return data.rows;
+    })
+
+
+}
+
+
+
+
+
+
+module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart, getOrdersAdmin, orderItemContentsQuery, getCart, getOrders, getSubtotal, insertOrderedItems};

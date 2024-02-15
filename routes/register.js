@@ -51,13 +51,32 @@ router.post("/register", async (req, res) => {
     // Set the user_id in the session
     req.session.user_id = userId;
 
-    res.redirect(`/login`);
+    res.redirect(`/menu`);
   } catch (error) {
     console.error("Error in register route:", error);
     res.status(500).send("Internal Server Error");
   }
 });
 
+router.post("/redirectregister", (req, res) => {
+  const userId = req.session.user_id;
+  const user = userQueries.getUsers(userId);
+  if (user) {
+    res.redirect(`/register`);
+  } else {
+    res.redirect(`/register`);
+  }
+});
+
+router.post("/redirectlogin", (req, res) => {
+  const userId = req.session.user_id;
+  const user = userQueries.getUsers(userId);
+  if (user) {
+    res.redirect(`/login`);
+  } else {
+    res.redirect(`/login`);
+  }
+});
 
 
 module.exports = router;
