@@ -27,6 +27,11 @@ router.get("/", async (req, res) => {
 });
 
 
+router.post('/:id', async (req, res) => {
+  console.log('req.body:', req.params.id);
+})
+
+
 
 
 module.exports = router;
