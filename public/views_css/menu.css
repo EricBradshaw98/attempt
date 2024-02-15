@@ -15,6 +15,24 @@ main {
   padding-bottom: 0px;
 }
 
+.goToCart{
+  display: flex;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+}
+
+.goToCart p {
+  inline-size: 0%;
+}
+
+.goToCartButton {
+  display: flex;
+  align-self: center;
+  align-content: center;
+  text-align: center;
+}
+
 .menu {
   display: flex;
   flex-wrap: wrap;
