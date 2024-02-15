@@ -1,24 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
 
-<head>
-  <title>Home Page</title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <!-- Meta Information -->
+    <title>Tweeter - Home Page</title>
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <!-- Navigation CSS -->
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+<!-- newtweet -->
+<link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+<!-- add-tweet -->
+<link rel="stylesheet" href="/styles/add-tweet.css" type="text/css" />
+<!-- profilestyle -->
+<link rel="stylesheet" href="/styles/profile-style.css" type="text/css" />
+<!-- External JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
-</head>
 
-<body>
-  <h1>Have fun! 🥔</h1>
-</body>
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/3a1edae249.js" crossorigin="anonymous"></script>
 
+
+<!-- counter -->
+<script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <body>
+    <!-- Top nav bar (fixed) -->
+    <nav>
+      <span>tweeter</span>
+
+      <div class="container">
+      <div class="additional-text"><strong>Write</strong> a new tweet </div>
+      <div class="fa-solid fa-angles-down" style="color: #e00b0b"> </div>
+
+      </nav>
+
+    <header>
+
+      <div>
+          <img class= "pfp" src="/images/profile-hex.png">
+      </div>
+      <br>
+      <div>
+          <h2 class=" pfpName">Eric Bradshaw</h2>
+      </div>
+  </header>
+
+
+    <!-- Page-specific (main) content here -->
+    <main><section class="new-tweet">
+
+      <form id= "new-tweet-button" method="POST" action="/tweets">
+        <label for="tweet-text"><strong>What are you humming about?</strong></label>
+        <textarea  class="test"name="text" id="tweet-text"></textarea>
+        <div class="line"></div>
+        <div class="button-counter-container">
+          <button type="submit" font=>Tweet</button>
+          <output name="counter" class="counter" for="tweet-text">140</output>
+        </div>
+      </form>
+      <div id="error-container" class="error-container" style="display: none;"></div>
+    </section>
+
+    <section class="tweets-container" id="tweets-container">
+
+  </section>
+
+    </main>
+  </body>
 </html>
+
+ <!-- App JS -->
+ <script type="text/javascript" src="/scripts/client.js"></script>
+
+ <!-- counter -->
+<script type="text/javascript" src="/scripts/composer-char-counter.js"></script>

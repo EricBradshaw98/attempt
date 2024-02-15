@@ -6,10 +6,20 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+const userQueries = require('../db/queries/users');
 
-router.get('/', (req, res) => {
-  res.render('users');
-}); 
+router.get('/', async (req, res) => {
+  try {
+    // Assuming userQueries.getAllUsers() fetches all users from the database
+    const users = await userQueries.getAllUsers();
+
+    res.render('users', { users });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 module.exports = router;
+

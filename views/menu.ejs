@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--head is where we will keep all links and references-->
+<head>
+  <title>Menu Page</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <!--removed all the other stylesheets-->
+  <link rel="stylesheet" href="/views_css/menu.css" />
+  <link rel="stylesheet" href="/views_css/_header.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Mea+Culpa&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<!--body is where we will keep all the page content-->
+<body>
+  <!--header is where we will keep the restaurant name + menu filters-->
+  <%- include('partials/_header') %>
+  <main>
+    <!--This section is where the menu items will be displayed-->
+    <section class="menu">
+      <!--one article per item-->
+      <% for (let item of menuItems) { %>
+        <article class="menuItem">
+          <div id="menuItemDisplay">
+            <img src= "<%= item.photo_url %>"" >
+            <div id ="foodInformation">
+              <p class="foodNameAndPrice"><%= item.name %> • $<%= (item.price/100).toFixed(2) %></p>
+              <p class="foodItemDescription"><%= item.description %></p>
+            </div>
+          </div>
+          <form class="addToCartForm" action="/cart/<%= item.orderID %>" method="POST">
+            <input type="number" id="quantity" class="quantityInput" name="quantity" step="1" min="1"/>
+            <input type="hidden" name="menuItemId" value="<%= item.id %>"/>
+            <input type="hidden" name="orderID" value="<%= item.orderID %>"/>
+            <button type="button" class="addToCartButton">ADD TO CART</button>
+          </form>
+        </article>
+      <% }; %>
+    </section>
+
+    <!--form will need to be added in cart with placeholder text to indicate name, phone number for pickup-->
+    <form class = "leave_review" method="post" action = "/reviews/submit">
+      <textarea name = "review-text" class = "review-text" id ="review-text" placeholder="Leave a review!"></textarea>
+      <button type="submit" id = "review-submit">Submit</button>
+    </form>
+    <div id="error-container" class="error-container" style="display: none;"></div>
+  </main>
+  <!--section for customer reviews-->
+  <footer>
+    <!--many reviews can be posted-->
+    <article class="reviews">
+      <!--rating in stars will be displayed-->
+      <div class="Rating">
+        <img src="/images/profile-hex.png">
+      </div>
+      <!--description will be contained the right side-->
+      <div class="review-description">
+        <h5>Very all dente</h5>
+        <p>I ordered the Fettucini Alfredo. The sauce was great but the Fettucini could have been boiled for longer. It was hard to roll it onto my spoon. The crunch was not great either</p>
+      </div>
+    </article>
+  </footer>
+</body>
+
+</html>
+
+

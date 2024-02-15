@@ -3,6 +3,9 @@ require('dotenv').config();
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
+const cookieSession = require("cookie-session");
+const { getUserByEmail, generateRandomString  } = require("./helpers");
+const { urlsForUser, urlDatabase , users  } = require("./database");
 const express = require('express');
 const morgan = require('morgan');
 
@@ -24,6 +27,11 @@ app.use(
     isSass: false, // false => scss, true => sass
   })
 );
+app.use(express.json());
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
 app.use(express.static('public'));
 
 // Separated Routes for each Resource
@@ -31,6 +39,9 @@ app.use(express.static('public'));
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+const loginRoutes = require('./routes/login');
+const registerRoutes = require('./routes/register');
+const menuRoutes = require('./routes/menu');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -38,6 +49,9 @@ const usersRoutes = require('./routes/users');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/', loginRoutes);
+app.use('/', registerRoutes);
+app.use('/menu', menuRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
