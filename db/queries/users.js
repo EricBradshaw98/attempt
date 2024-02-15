@@ -215,7 +215,7 @@ const getSubtotal = (orderID) => {
 
   return db.query(queryString, [orderID])
     .then((data) => {
-      return data.rows;
+      return data.rows[0].subtotal;
     })
     .catch((err) => {
       console.log(err.message);
@@ -236,9 +236,21 @@ console.log(orderID, menuItemID, quantity)
 
 }
 
+const orderedItemsByOrderID = (orderID) => {
+  const itemQuery = `SELECT *
+  FROM ordered_items
+  JOIN menu ON menu.id = ordered_items.menu_item_id
+  WHERE ordered_items.order_id = $1;`;
+
+  return db.query(itemQuery, [orderID])
+  .then((data) => {
+    return data.rows;
+  })
+}
 
 
 
 
 
-module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart, getOrdersAdmin, orderItemContentsQuery, getCart, getOrders, getSubtotal, insertOrderedItems};
+
+module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart, getOrdersAdmin, orderItemContentsQuery, getCart, getOrders, getSubtotal, insertOrderedItems, orderedItemsByOrderID};
