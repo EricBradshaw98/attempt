@@ -15,11 +15,17 @@ main {
   padding-bottom: 0px;
 }
 
+form.goToCart {
+  display: flex;
+  justify-content: center;
+}
+
 .goToCart{
   display: flex;
   align-self: center;
   align-content: center;
   text-align: center;
+  width: 30px;
 }
 
 .goToCart p {
