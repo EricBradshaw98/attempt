@@ -111,5 +111,18 @@ const queryAllFoodItems = () => {
   return db.query(querymenu)
 };
 
+const addToCart = (orderID, menuItemID, quantity) => {
+  const insertQuery = `
+  INSERT INTO ordered_items (order_id, menu_item_id, quantity) VALUES ($1, $2, $3)
+  `;
+  return db.query(insertQuery, [orderID, menuItemID, quantity || 1])
+  .then((data) => {
+    return data.rows;
+  })
+  .catch((err) => {
+    console.log(err.message);
+  })
+}
 
-module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById};
+
+module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart};
