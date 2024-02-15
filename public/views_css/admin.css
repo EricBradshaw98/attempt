@@ -1,0 +1,45 @@
+admin.css
+body {
+  font-family: 'Arial', sans-serif;
+  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+  margin: 0;
+  padding: 0;
+  background-color: #2B4622;
+}
+
+main {
+  padding-top: 80px;
+}
+
+.allUsersOrders {
+  background-color: #f5d29d;
+  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+.order {
+  margin-bottom: 15px;
+}
+
+.orderID,
+.timestamp,
+.status,
+.totalPrice {
+  margin: 5px 0;
+}
+
+.orderItems {
+  margin-top: 10px;
+}
+
+.orderItems ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.orderItems li {
+  margin-bottom: 5px;
+}
