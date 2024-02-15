@@ -9,14 +9,14 @@
 
       <% if (user.id) { %>
 
-          <div class="form-inline" style="color: rgb(49, 11, 11); margin-right: 1em;">
+          <div class="form-inline" style="color: rgb(253, 253, 253); margin-right: 1em;">
             Logged in as: <%= user.name %>!
             <form class="ml-2" action="/logout" method="POST">
               <button type="submit" class="btn btn-danger">Logout</button>
             </form>
           </div>
         <% } else {%>
-        </div>
+        <div class="form-div">
 
           <form class="form-inline" action="/redirectregister" method="POST">
             <button type="submit" class="btn btn-primary">Register</button>
@@ -25,11 +25,13 @@
           <form class="form-inline" action="/redirectlogin" method="POST">
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
+        </div>
         <% } %>
 
 
       <i class="fa-solid fa-user" id="loginButton"></i>
       <i class="fa-solid fa-cart-plus"></i>
+  
 
     </div>
   </nav>

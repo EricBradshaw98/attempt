@@ -106,11 +106,12 @@ main {
   color: #2B4622;
   padding: 10px;
   position: fixed;
-  width: 90%;
+  width: 50%;
   bottom: 0;
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  align-self: center;
 }
 
 #subtotalTarget {
@@ -148,4 +149,13 @@ main {
 
 .buttonNegative:hover {
   background-color: #721010;
+}
+
+.cart.image {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  border: 2px solid #2B4622;
+  margin-right: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }

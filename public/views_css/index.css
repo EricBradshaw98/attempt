@@ -1,0 +1,54 @@
+body {
+  background-color: #2B4622;
+  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+  font-family: "Mea Culpa", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: #D7BF3A;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5em;
+  font-size: xx-large;
+  text-align: center;
+}
+
+main a {
+  color: #D7BF3A;
+  text-decoration: none;
+}
+
+main a:hover {
+  transform: scale(1.3);
+  text-decoration: underline;
+  text-decoration-color: #D7BF3A;
+  text-decoration-thickness: 1px;
+}
+
+main a:hover {
+  transition: 0.6s ease;
+}
+
+.card {
+  display: block;
+  flex-direction: column;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  width: 400px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}

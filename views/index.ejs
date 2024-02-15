@@ -1,93 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+3:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
 
+<!--head is where we will keep all links and references-->
+<head>
+  <title>Welcome page</title>
 
-    <!-- Meta Information -->
-    <title>Tweeter - Home Page</title>
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
-
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-    <!-- Navigation CSS -->
-    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-
-    <!-- Header CSS -->
-    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-<!-- newtweet -->
-<link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
-<!-- add-tweet -->
-<link rel="stylesheet" href="/styles/add-tweet.css" type="text/css" />
-<!-- profilestyle -->
-<link rel="stylesheet" href="/styles/profile-style.css" type="text/css" />
-<!-- External JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="/vendor/jquery-3.0.0.js"></script>
+  <!--removed all the other stylesheets-->
+  <link rel="stylesheet" href="/views_css/index.css" />
+  <link rel="stylesheet" href="/views_css/_header.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Mea+Culpa&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js" integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/3a1edae249.js" crossorigin="anonymous"></script>
+</head>
 
+<!--body is where we will keep all the page content-->
+<body>
+  <!--header is where we will keep the restaurant name + menu filters-->
+ 
+  <main>
+    <h1>Welcome to</h1>
+    <a href="/login"><h2>Lighthouse Restaurant</h2></a>
+  </main>
+  
+</body>
 
-<!-- counter -->
-<script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
-
-  </head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <body>
-    <!-- Top nav bar (fixed) -->
-    <nav>
-      <span>tweeter</span>
-
-      <div class="container">
-      <div class="additional-text"><strong>Write</strong> a new tweet </div>
-      <div class="fa-solid fa-angles-down" style="color: #e00b0b"> </div>
-
-      </nav>
-
-    <header>
-
-      <div>
-          <img class= "pfp" src="/images/profile-hex.png">
-      </div>
-      <br>
-      <div>
-          <h2 class=" pfpName">Eric Bradshaw</h2>
-      </div>
-  </header>
-
-
-    <!-- Page-specific (main) content here -->
-    <main><section class="new-tweet">
-
-      <form id= "new-tweet-button" method="POST" action="/tweets">
-        <label for="tweet-text"><strong>What are you humming about?</strong></label>
-        <textarea  class="test"name="text" id="tweet-text"></textarea>
-        <div class="line"></div>
-        <div class="button-counter-container">
-          <button type="submit" font=>Tweet</button>
-          <output name="counter" class="counter" for="tweet-text">140</output>
-        </div>
-      </form>
-      <div id="error-container" class="error-container" style="display: none;"></div>
-    </section>
-
-    <section class="tweets-container" id="tweets-container">
-
-  </section>
-
-    </main>
-  </body>
 </html>
-
- <!-- App JS -->
- <script type="text/javascript" src="/scripts/client.js"></script>
-
- <!-- counter -->
-<script type="text/javascript" src="/scripts/composer-char-counter.js"></script>

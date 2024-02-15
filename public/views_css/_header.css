@@ -49,6 +49,11 @@ nav {
   font-style: normal;
 }
 
+.form-div {
+  display: flex;
+  flex-direction: row;
+}
+
 .fa-solid {
   font-size: 1.6em;
   cursor: pointer;
