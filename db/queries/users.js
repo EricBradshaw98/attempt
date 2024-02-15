@@ -124,5 +124,43 @@ const addToCart = (orderID, menuItemID, quantity) => {
   })
 }
 
+//query to get the admin orders
+const getOrdersAdmin = () => {
+  const queryString = `
+  SELECT
+  orders.id,
+  orders.order_placed,
+  orders.active,
+  orders.order_ready,
+  SUM(ordered_items.quantity * menu.price) AS total_price
+FROM
+  orders
+  JOIN ordered_items ON orders.id = ordered_items.order_id
+  JOIN menu ON menu.id = ordered_items.menu_item_id
+WHERE
+  orders.active = 'true'
+GROUP BY
+  orders.id, orders.order_placed, orders.active, orders.order_ready
+ORDER BY
+  orders.active, orders.order_placed;
+  `
 
-module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart};
+  return db.query(queryString)
+  .then((data) => {
+    return data.rows;
+  })
+}
+const orderItemContentsQuery = (orderID) => {
+  const itemQuery = `SELECT
+  menu.name, ordered_items.quantity, menu.price AS price
+  FROM ordered_items
+  JOIN menu ON menu.id = ordered_items.menu_item_id
+  WHERE ordered_items.order_id = $1;`;
+
+  return db.query(itemQuery, [orderID])
+  .then((data) => {
+    return data.rows;
+  })
+}
+
+module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart, getOrdersAdmin, orderItemContentsQuery};

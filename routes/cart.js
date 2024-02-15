@@ -4,7 +4,7 @@ const db = require('../db/connection')
 const { Template } = require('ejs')
 const userQueries = require('../db/queries/users')
 // const client = require('./twilio-api')
-const { getAllFoodItems } = require("../db/queries/menu");
+
 
 //get for viewing
 
