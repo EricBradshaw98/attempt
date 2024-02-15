@@ -71,4 +71,12 @@ nav {
 
 button {
   background-color: #D7BF3A;
+  border-radius: 5px;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-size: large;
+}
+
+button:hover {
+  background-color: #a5932d;
 }

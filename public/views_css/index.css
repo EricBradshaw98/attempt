@@ -52,3 +52,28 @@ form {
   display: flex;
   flex-direction: column;
 }
+
+.newEmail {
+  margin-left: 45px;
+  width: 150;
+}
+
+.newPhone {
+  margin-left: 45px;
+  width: 150;
+}
+
+.home-button {
+  width: 100px;
+  align-self: center;
+  margin: 15px;
+  height: 40px;
+  border-radius: 10px;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-size: large;
+}
+
+.home-button:hover {
+  background-color: #a5932d;
+}
