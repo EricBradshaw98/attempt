@@ -1,3 +1,8 @@
+
+form.goToCart {
+  display: flex;
+  justify-content: center;
+}
 body {
   font-family: "Lora", serif;
   font-optical-sizing: auto;
@@ -104,7 +109,7 @@ main {
   margin-bottom: 5px;
   margin : 5px auto;
 
-  
+
 }
 
 
