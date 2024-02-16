@@ -67,10 +67,11 @@ console.log(menuItems)
 router.post('/:id', async (req, res) => {
   try {
     // Extract necessary data from the request body
-    const userId = req.session.user_id;
+    const userID = req.session.user_id;
     const orderID = req.params.id;
+    console.log(userID, orderID)
 
-    const user = await userQueries.getUserById(userId);
+    const user = await userQueries.getUserById(userID);
 
     if (!user) {
       res.status(404).send("User not found");

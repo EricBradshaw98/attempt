@@ -17,9 +17,9 @@ router.get("/", async (req, res) => {
 
     // Assuming userQueries.queryAllFoodItems() returns a promise
     const menuItems = await userQueries.queryAllFoodItems();
-
+    console.log('orderID', orderID)
     // Pass user object to the menu template
-    res.render('menu', { user, menuItems: menuItems.rows });
+    res.render('menu', { user, menuItems: menuItems.rows, orderID });
   } catch (error) {
     console.error("Error fetching user and menu items:", error);
     res.status(500).send("Internal Server Error");

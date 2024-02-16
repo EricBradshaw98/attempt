@@ -27,7 +27,7 @@
   <!--header is where we will keep the restaurant name + menu filters-->
   <%- include('partials/_header') %>
   <main>
-    <form class = "goToCart" method="post" >
+    <form class = "goToCart" method="post" action = "/cart/<%= orderID %>">
       <button type="submit" id = "cart-submit">Checkout</button>
     </form>
 
