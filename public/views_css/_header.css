@@ -1,0 +1,69 @@
+header {
+  background-color: #2B4622;
+  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+  font-family: "Mea Culpa", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: #D7BF3A;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 2em;
+}
+
+.header_left {
+  width: 300px;
+}
+
+.header_left a {
+  text-decoration: none;
+  color: #D7BF3A;
+  margin-right: auto;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.header_title {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.header_right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 300px;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.fa-solid {
+  font-size: 1.6em;
+  cursor: pointer;
+}
+
+.fa-solid:hover {
+  transform: scale(1.1);
+}
+
+.form-inline {
+  display: flex;
+  flex-direction: row;
+  color: rgb(49, 11, 11);
+}
+
+button {
+  background-color: #D7BF3A;
+}

@@ -8,34 +8,24 @@ $(document).ready(function() {
   //   $('.addToCartButton').click(function(e) {
   //       addToCart(e);
   //   });
-  $('.goToCart').submit(async function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    try {
-
-      const response = await fetch("/submit", {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+  $('.removeItemAjax').submit(function(e) {
+    e.preventDefault();
+    console.log(e)
+    const newURL = $(this).attr("action");
+    const values = $(this).serialize();
 
 
-      if (response.ok) {
-
-        const orderID = $(this).attr('action').split('/')[1];
-
-
-        window.location.href = `/${orderID}`;
-      } else {
-        console.error("Form submission failed:", response.statusText);
+    $.ajax({
+      type: "POST",
+      url: newURL,
+      data: values,
+      success: (jsonData) => {
+        const currentSubtotal = jsonData.subtotal;
+        const newHTML = `<p>SUBTOTAL : $${currentSubtotal}</p>`;
+        $("subtotalTarget").empty().append(newHTML);
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
   });
-});
+  });
 
 
 

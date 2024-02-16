@@ -69,7 +69,7 @@ router.post('/:id', async (req, res) => {
     // Extract necessary data from the request body
     const userId = req.session.user_id;
     const orderID = req.params.id;
-
+console.log(orderID)
     const user = await userQueries.getUserById(userId);
 
     if (!user) {
@@ -114,8 +114,37 @@ console.log(orderID, menuItemID, quantity)
   }
 });
 
+router.post('/removeFoodItem/:id', async (req, res) => {
+  try {
+    const orderID = req.params.id;
+    const foodItemName = req.body.foodItemName;
+    console.log(orderID)
+    console.log(foodItemName)
 
 
+    // Remove a food item from the order
+    await userQueries.removeFoodItem(foodItemName, orderID);
+
+    res.redirect(`/cart`);
+  } catch (error) {
+    console.error('Error removing food item from the order:', error);
+    res.status(500).send('Error removing food item from the order. Please try again later.');
+  }
+});
+
+
+
+// delete order inside
+router.post('/cancelOrder/:orderID', (req, res) => {
+  const orderID = req.params.orderID;
+  userQueries.cancelCartOrder(orderID)
+    .then(() => {
+      res.redirect(`/`);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 
 module.exports = router;
 

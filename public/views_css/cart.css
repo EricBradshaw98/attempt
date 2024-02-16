@@ -1,0 +1,151 @@
+body {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
+  margin: 0;
+  padding: 0;
+  background-color: #2B4622;
+}
+
+main {
+  padding: 60px;
+  padding-top: 80px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuItemList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.menuItem {
+  width: calc(55% - 20px);
+  box-sizing: border-box;
+  background-color: #f5d29d;
+  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+  border: 1px;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.menuItem:hover {
+  background-color: #c99b57;
+}
+
+#menuDisplay {
+  display: flex;
+}
+
+#menuDisplay img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  border: 2px solid #2B4622;
+  margin-right: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#menuDisplay span {
+  width: 25%;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.menuInformation {
+  width: 75%;
+}
+
+.menuNameAndPrice {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.menuItemDescription {
+  margin-top: 5px;
+}
+
+.editCart {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.update-form i {
+  cursor: pointer;
+  font-size: 1.5em;
+  margin: 0 5px;
+}
+
+.quantityAjax {
+  width: 50px;
+  padding: 5px;
+}
+
+.remove-btn {
+  background-color: #af1c1c;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+  background-color: #721010;
+}
+
+.confirmationBar {
+  background-color: #f5d29d;
+  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+  color: #2B4622;
+  padding: 10px;
+  position: fixed;
+  width: 90%;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+#subtotalTarget {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+
+}
+
+.confirmationBar button {
+  background-color: #2B4622;
+  color: #D7BF3A;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.confirmationBar button:hover {
+  background-color: #af1c1c;
+}
+
+.buttonNegative {
+  background-color: #af1c1c;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.buttonNegative:hover {
+  background-color: #721010;
+}
