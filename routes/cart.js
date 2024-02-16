@@ -64,7 +64,32 @@ console.log(menuItems)
   }
 });
 
+router.post('/:id', async (req, res) => {
+  try {
+    // Extract necessary data from the request body
+    const userId = req.session.user_id;
+    const orderID = req.params.id;
 
+    const user = await userQueries.getUserById(userId);
+
+    if (!user) {
+      res.status(404).send("User not found");
+      return;
+    }
+
+    // Assuming userQueries.queryAllFoodItems() returns a promise
+
+    const menuItems = await userQueries.orderedItemsByOrderID(orderID);
+    console.log(menuItems)
+    const subtotal = await userQueries.getSubtotal(orderID);
+    console.log(subtotal)
+    // Pass user object to the menu template
+    res.redirect(`/${orderID}`);
+  } catch (error) {
+    console.error("Error fetching user and menu items:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 
 router.post('/', async (req, res) => {
@@ -88,6 +113,8 @@ console.log(orderID, menuItemID, quantity)
     res.status(500).send('Error adding item to the ordered_items database table. Please try again later.');
   }
 });
+
+
 
 
 module.exports = router;

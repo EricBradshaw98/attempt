@@ -8,6 +8,40 @@ $(document).ready(function() {
   //   $('.addToCartButton').click(function(e) {
   //       addToCart(e);
   //   });
+  $('.goToCart').submit(async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    try {
+
+      const response = await fetch("/submit", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+
+      if (response.ok) {
+
+        const orderID = $(this).attr('action').split('/')[1];
+
+
+        window.location.href = `/${orderID}`;
+      } else {
+        console.error("Form submission failed:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  });
+});
+
+
+
+
+
+
 
   //make a submit event for the form
   $('.addToCartForm').submit(function(event) {
