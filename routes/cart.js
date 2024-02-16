@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
     const subtotal = await userQueries.getSubtotal(menuItems);
 
     // Pass user object to the menu template
-    res.render('menu', { user, menuItems: menuItems.rows });
+    res.render('cart', { user, menuItems: menuItems.rows });
   } catch (error) {
     console.error("Error fetching user and menu items:", error);
     res.status(500).send("Internal Server Error");
