@@ -1,5 +1,5 @@
 header {
-  background-color: #2B4622;
+  background-color: #12e293;
   background-image: url("https://www.transparenttextures.com/patterns/black-felt.png");
   font-family: "Mea Culpa", cursive;
   font-weight: 400;
@@ -10,6 +10,7 @@ header {
   width: 100%;
   top: 0;
   z-index: 1000;
+  height: 30px;
 }
 
 nav {

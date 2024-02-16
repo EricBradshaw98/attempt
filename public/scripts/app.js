@@ -10,7 +10,7 @@ $(document).ready(function() {
   //   });
   $('.removeItemAjax').submit(function(e) {
     e.preventDefault();
-    console.log(e)
+    console.log
     const newURL = $(this).attr("action");
     const values = $(this).serialize();
 
@@ -27,7 +27,33 @@ $(document).ready(function() {
   });
   });
 
+  $('.goToCart').click(function(e) {
+    e.preventDefault();
 
+    const orderID = Cookies.get("order")
+//ajax
+//Cookies.remove('name')
+//non ajx
+//res.clearCookie("order")
+  $.ajax({
+    url: `/cart/${orderID}`,
+    type: 'POST',
+    //data: {...data, orderID},
+    success: function(response) {
+
+
+
+
+
+      console.log('posted to orderid', response);
+      window.location.href = `http://localhost:8080/cart/${orderID}`
+
+    },
+    error: function(xhr, status, error) {
+      console.error('There was a problem adding the item to cart:', error);
+    }
+  });
+  });
 
 
 

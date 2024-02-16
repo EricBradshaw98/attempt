@@ -5,8 +5,8 @@ const userQueries = require('../db/queries/users')
 router.get("/", async (req, res) => {
   try {
     const userId = req.session.user_id;
-    const orderID = req.session.order_id;
-
+    const orderID = req.cookies["order"];
+console.log(orderID)
     // Fetch user data
     const user = await userQueries.getUserById(userId);
 
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
     const menuItems = await userQueries.queryAllFoodItems();
 
     // Pass user object to the menu template
-    res.render('menu', { user, menuItems: menuItems.rows });
+    res.render('menu', { orderID, user, menuItems: menuItems.rows });
   } catch (error) {
     console.error("Error fetching user and menu items:", error);
     res.status(500).send("Internal Server Error");
@@ -41,6 +41,7 @@ router.post('/cart', async (req, res) => {
 
 
     console.log('Item added to the ordered_items database table successfully');
+
 
 
     res.status(200).send('Item added to the ordered_items database table successfully');

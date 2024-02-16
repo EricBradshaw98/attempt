@@ -4,6 +4,7 @@ require('dotenv').config();
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
 const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 const { getUserByEmail, generateRandomString  } = require("./helpers");
 const { urlsForUser, urlDatabase , users  } = require("./database");
 const express = require('express');
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(
   '/styles',
   sassMiddleware({
