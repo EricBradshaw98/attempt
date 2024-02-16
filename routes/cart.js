@@ -101,15 +101,12 @@ console.log(orderID, menuItemID, quantity)
 
     await userQueries.insertOrderedItems(orderID, menuItemID, quantity);
 
-
     console.log('Item added to the ordered_items database table successfully');
-
 
     res.status(200).send('Item added to the ordered_items database table successfully');
   } catch (error) {
 
     console.error('Error adding item to the ordered_items database table:', error);
-
 
     res.status(500).send('Error adding item to the ordered_items database table. Please try again later.');
   }

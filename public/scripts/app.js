@@ -180,4 +180,3 @@ $(document).ready(function() {
   // //const stringCart = localStorage.getItem('cart');
 
   // //const cart = JSON.parse(stringCart);
-});
