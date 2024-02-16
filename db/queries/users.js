@@ -248,9 +248,27 @@ const orderedItemsByOrderID = (orderID) => {
   })
 }
 
+const createOrder = (orderID) => {
+
+  const insertQuery = `
+    INSERT INTO orders (order_id, menu_item_id, quantity)
+    SELECT $1, menu_item_id, quantity
+    FROM ordered_items
+    WHERE order_id = $1
+    RETURNING *;`;
+
+
+  return db.query(insertQuery, [orderID])
+    .then((data) => {
+
+      return data.rows;
+    })
+
+}
 
 
 
 
 
-module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart, getOrdersAdmin, orderItemContentsQuery, getCart, getOrders, getSubtotal, insertOrderedItems, orderedItemsByOrderID};
+
+module.exports = { getUsers, getUserByEmail, generateRandomString, createUser, queryCurrentOrder, createNewOrderQuery, queryAllFoodItems, getOrderById, getUserById, addToCart, getOrdersAdmin, orderItemContentsQuery, getCart, getOrders, getSubtotal, insertOrderedItems, orderedItemsByOrderID, createOrder };

@@ -55,6 +55,34 @@ $(document).ready(function() {
   });
   });
 
+  $('.submitBar').click(function(e) {
+    e.preventDefault();
+
+
+//ajax
+//Cookies.remove('name')
+//non ajx
+//res.clearCookie("order")
+$.ajax({
+  url: '/cart/insert/${orderID}',
+  type: 'POST',
+  data: {...data, orderID},
+  success: function(response) {
+
+    console.log('Item added to cart successfully!', response);
+
+
+
+      console.log('posted to orderid', response);
+      window.location.href = `http://localhost:8080/cart/${orderID}`
+
+    },
+    error: function(xhr, status, error) {
+      console.error('There was a problem adding the item to cart:', error);
+    }
+  });
+  });
+
 
 
 
@@ -137,63 +165,5 @@ $(document).ready(function() {
 
     //
   });
-  //   function addToCart(event) {
 
-  //     const itemId = event.target.getAttribute('data-order-id');
-  //       const form = $(`#addToCartForm_${itemId}`);
-  //       const quantity = $(`#quantity_${itemId}`).val();
-  //       const formData = new FormData(form[0]);
-  //       const price = $(`#foodNameAndPrice_${itemId}`).text();
-
-  //       console.log({itemId, form, quantity, formData, price})
-  // const stringCart = localStorage.getItem('cart');
-
-  // const cart = JSON.parse(stringCart);
-
-  // //to use
-
-  // const item = {itemId, quantity, price};
-
-  // cart.items.push(item);
-  // localStorage.setItem('cart', JSON.stringify(cart));
-  // console.log(cart);
-  //       $.ajax({
-  //           url: form.attr('action'),
-  //           type: 'POST',
-  //           data: formData,
-  //           processData: false,
-  //           contentType: false,
-  //           success: function(response) {
-
-  //               console.log('Item added to cart successfully!');
-
-  //               window.location.reload();
-  //           },
-  //           error: function(xhr, status, error) {
-
-  //               console.error('There was a problem adding the item to cart:', error);
-  //           }
-  //       });
-  //   }
-
-  //   const order ={
-  //     orderId: 'test',
-  //     items:[]
-  //     }
-
-
-
-  //     // Sample object
-
-
-  // // Convert object to string and store it in local storage
-  // localStorage.setItem('cart', JSON.stringify(order));
-
-  // });
-
-  // //get item
-
-  // //const stringCart = localStorage.getItem('cart');
-
-  // //const cart = JSON.parse(stringCart);
 });

@@ -114,6 +114,28 @@ console.log(orderID, menuItemID, quantity)
   }
 });
 
+router.post('/cart/insert', async (req, res) => {
+  try {
+    // Extract necessary data from the request body
+    const { orderID, menuItemID, quantity } = req.body;
+console.log(orderID, menuItemID, quantity)
+
+    await userQueries.createOrder(orderID);
+
+
+    console.log('Item added to the orders database table successfully');
+    res.cookie("order", orderID)
+
+    res.status(200).send('Item added to the ordered_items database table successfully');
+  } catch (error) {
+
+    console.error('Error adding item to the ordered_items database table:', error);
+
+
+    res.status(500).send('Error adding item to the ordered_items database table. Please try again later.');
+  }
+});
+
 
 
 module.exports = router;

@@ -1,29 +1,15 @@
-<link rel="stylesheet" href="/views_css/_header.css" />
-
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-success">
-    <a class="navbar-brand" href="/urls">Lighthouse Restaurant</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/urls"></a>
-        <a class="nav-item nav-link" href="/urls/new"></a>
-      </div>
-      <div class="ml-auto">
+  <nav>
+    <div class="header_left">
+      <i class="fa-solid fa-house"></i>
+    </div>
+    <div class="header_title">Lighthouse Restaurant</div>
+    <div class="header_right">
 
-        <% if (user.id) { %>
 
-          <div class="form-inline" style="color: white; margin-right: 1em;">
+      <% if (user.id) { %>
+
+          <div class="form-inline" style="color: rgb(49, 11, 11); margin-right: 1em;">
             Logged in as: <%= user.name %>!
             <form class="ml-2" action="/logout" method="POST">
               <button type="submit" class="btn btn-danger">Logout</button>
@@ -40,7 +26,20 @@
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
         <% } %>
-      </div>
+
+
+      <i class="fa-solid fa-user" id="loginButton"></i>
+      <i class="fa-solid fa-cart-plus"></i>
+
     </div>
   </nav>
 </header>
+
+<script>
+  document.getElementById('loginButton').addEventListener('click', function() {
+    const userID = prompt("Please enter your User ID:");
+    if (userID) {
+      window.location.href = /users/login/${userID};
+    }
+  });
+</script>

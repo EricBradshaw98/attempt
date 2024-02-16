@@ -36,9 +36,9 @@
             </div>
             <div class="editCart">
               <form class="update-form" action="/api/users/updateQuantity/<%= orderID %>" method="POST">
-                <i class="quantity-btn fa-solid fa-minus"></i>
+                <i class=></i>
                 <input type="number" class="quantityAjax" id="quantity" name="quantity" value="<%= item.quantity %>" step="1" min="1"/>
-                <i class="quantity-btn fa-solid fa-plus"></i>
+                <i class=></i>
                 <input type="hidden" name="order_contents_id" value="<%= item.order_contentsid %>"/>
               </form>
               <form class="removeItemAjax" action="/api/users/removemenuItem/<%= orderID%>" method="POST">
@@ -56,7 +56,7 @@
           <p><strong>TOTAL : </strong>$<%= subtotal %></p>
         </div>
         <div>
-          <form action="/cart/submitOrder/<%= orderID %>" method="POST">
+          <form class="submitBar" action="/cart/insert/<%= orderID %>" method="POST">
             <button type="submit">SUBMIT</button>
           </form>
           <form action="/cart/cancelOrder/<%= orderID %>" method="POST">
